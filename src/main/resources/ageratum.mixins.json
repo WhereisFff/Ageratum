@@ -9,11 +9,7 @@
   ],
   "client": [
     "GlDebugMixin",
-    "GuiGraphicsMixin",
-    "StructureGuiScreenMixin",
-    "StructureGuiRenderStateMixin",
-    "StructureGuiGraphicsMixin",
-    "StructureGuiRecipeBookMixin"
+    "GuiGraphicsMixin"
   ],
   "injectors": {
     "defaultRequire": 1

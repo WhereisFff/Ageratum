@@ -9,7 +9,7 @@ import dev.anvilcraft.resource.ageratum.client.feat.markdown.MDRenderContext;
 import dev.anvilcraft.resource.ageratum.client.gui.GuideTheme;
 import dev.anvilcraft.resource.ageratum.client.feat.markdown.component.MDComponent;
 import dev.anvilcraft.resource.ageratum.client.feat.markdown.component.MDTextComponent;
-import dev.anvilcraft.resource.ageratum.client.util.level.SandboxRenderLevel;
+import dev.anvilcraft.lib.v2.rendering.preview.level.SandboxRenderLevel;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;

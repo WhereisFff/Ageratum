@@ -1,5 +1,7 @@
 package dev.anvilcraft.resource.ageratum.client.gui;
 
+import dev.anvilcraft.lib.v2.rendering.preview.gui.StructureGuiGeometry;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

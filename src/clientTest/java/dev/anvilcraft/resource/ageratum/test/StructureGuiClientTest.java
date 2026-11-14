@@ -2,8 +2,8 @@ package dev.anvilcraft.resource.ageratum.test;
 
 import dev.anvilcraft.resource.ageratum.client.feat.markdown.MarkdownParser;
 import dev.anvilcraft.resource.ageratum.client.gui.GuideScreen;
-import dev.anvilcraft.resource.ageratum.client.gui.StructureGuiSession;
-import dev.anvilcraft.resource.ageratum.client.util.level.StructureSandboxFactory;
+import dev.anvilcraft.lib.v2.rendering.preview.gui.StructureGuiSession;
+import dev.anvilcraft.lib.v2.rendering.preview.level.StructureSandboxFactory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
