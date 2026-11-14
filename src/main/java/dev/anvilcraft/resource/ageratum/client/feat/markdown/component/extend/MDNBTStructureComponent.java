@@ -12,11 +12,11 @@ import dev.anvilcraft.resource.ageratum.client.feat.structure.StructureProjectio
 import dev.anvilcraft.resource.ageratum.client.gui.GuideScreen;
 import dev.anvilcraft.resource.ageratum.client.gui.GuideScreen;
 import dev.anvilcraft.resource.ageratum.client.util.RelativePathResolver;
-import dev.anvilcraft.resource.ageratum.client.util.ViewportCameraRig;
-import dev.anvilcraft.resource.ageratum.client.util.level.SandboxRenderLevel;
-import dev.anvilcraft.resource.ageratum.client.util.level.StructurePreviewPicker;
-import dev.anvilcraft.resource.ageratum.client.util.level.StructurePreviewRenderer;
-import dev.anvilcraft.resource.ageratum.client.util.level.StructureSandboxFactory;
+import dev.anvilcraft.lib.v2.rendering.preview.ViewportCameraRig;
+import dev.anvilcraft.lib.v2.rendering.preview.level.SandboxRenderLevel;
+import dev.anvilcraft.lib.v2.rendering.preview.level.StructurePreviewPicker;
+import dev.anvilcraft.lib.v2.rendering.preview.level.StructurePreviewRenderer;
+import dev.anvilcraft.lib.v2.rendering.preview.level.StructureSandboxFactory;
 import lombok.extern.slf4j.Slf4j;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -174,9 +174,9 @@ public final class MDNBTStructureComponent extends MDComponent {
         Vector2f screenMouse = context.graphics().pose().transformPosition(context.mouseX(), context.mouseY(), new Vector2f());
         if (!context.graphics().containsPointInScissor(Math.round(screenMouse.x), Math.round(screenMouse.y))) return;
         List<Component> lines = this.unavailableMenu
-            ? List.of(Component.translatable("tooltip.ageratum.structure_preview.no_gui"))
+            ? List.of(Component.translatable("tooltip.anvillib_rendering.structure_preview.no_gui"))
             : this.selectedBlock != null ? this.selectedBlockTooltip
-            : List.of(Component.translatable("tooltip.ageratum.structure_preview.inspect"));
+            : List.of(Component.translatable("tooltip.anvillib_rendering.structure_preview.inspect"));
         context.tooltips().add(new MDRenderContext.Tooltip(lines, java.util.Optional.empty()));
     }
 

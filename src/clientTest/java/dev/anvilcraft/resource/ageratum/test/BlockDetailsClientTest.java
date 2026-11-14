@@ -1,8 +1,8 @@
 package dev.anvilcraft.resource.ageratum.test;
 
-import dev.anvilcraft.resource.ageratum.client.util.level.StructureBlockEntityDetails;
-import dev.anvilcraft.resource.ageratum.client.util.level.StructureDetailsPager;
-import dev.anvilcraft.resource.ageratum.client.util.level.StructureSandboxFactory;
+import dev.anvilcraft.lib.v2.rendering.preview.level.StructureBlockEntityDetails;
+import dev.anvilcraft.lib.v2.rendering.preview.level.StructureDetailsPager;
+import dev.anvilcraft.lib.v2.rendering.preview.level.StructureSandboxFactory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
@@ -33,7 +33,7 @@ final class BlockDetailsClientTest {
         String pulseText = pulse.stream().map(Component::getString).reduce("", (a, b) -> a + "\n" + b);
         check(pulseText.contains("17") && pulseText.contains("41") && !pulseText.contains("ExtraData.StartMode"),
             "pulse timing and mode use saved data and translations");
-        var session = dev.anvilcraft.resource.ageratum.client.gui.StructureGuiSession.create(mc, template, origin);
+        var session = dev.anvilcraft.lib.v2.rendering.preview.gui.StructureGuiSession.create(mc, template, origin);
         check(session != null && session.screen().getMenu().getSlot(0).getItem().getCount() == 23, "native menu displays inventory");
         saved.remove("ExtraData");
         check(level.getStructureBlockEntityData(origin).contains("ExtraData"), "callers cannot mutate snapshot");

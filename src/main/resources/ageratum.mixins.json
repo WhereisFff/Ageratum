@@ -12,15 +12,7 @@
     "GlDebugMixin",
     "GuiGraphicsExtractorMixin",
     "MouseHandlerMixin",
-    "accessor.ClientClockManager$ClockInstanceAccessor",
-    "accessor.ClientClockManagerAccessor",
-    "accessor.StringSplitterAccessor",
-    "StructureGuiScreenMixin",
-    "StructureGuiGraphicsMixin",
-    "StructureGuiItemStateMixin",
-    "StructureGuiItemRendererMixin",
-    "StructureGuiOversizedItemMixin",
-    "StructureGuiRecipeBookMixin"
+    "accessor.StringSplitterAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

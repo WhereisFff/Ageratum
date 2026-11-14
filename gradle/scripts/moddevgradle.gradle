@@ -1,8 +1,6 @@
 neoForge {
     version = libs.versions.neoForge.get()
 
-    accessTransformers.from('src/main/resources/META-INF/accesstransformer.cfg')
-
     var isJbr = System.getProperty('java.vm.vendor').contains('JetBrains')
 
     runs {

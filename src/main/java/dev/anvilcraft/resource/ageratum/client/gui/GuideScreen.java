@@ -10,6 +10,7 @@ import dev.anvilcraft.resource.ageratum.client.layout.LayoutTexture;
 import dev.anvilcraft.resource.ageratum.client.layout.LayoutScrollbar;
 import com.mojang.blaze3d.platform.Window;
 import dev.anvilcraft.resource.ageratum.Ageratum;
+import dev.anvilcraft.lib.v2.rendering.preview.gui.StructureGuiPreview;
 import dev.anvilcraft.resource.ageratum.client.AgeratumClient;
 import dev.anvilcraft.resource.ageratum.client.GuideBookmarkStore;
 import dev.anvilcraft.resource.ageratum.client.GuideZoomStore;
@@ -226,7 +227,7 @@ public class GuideScreen extends Screen {
     protected List<Identifier> breadCrumbs;
     @Getter
     protected double scale = 1.0f;
-    private final StructureGuiPreview structureGuiPreview = new StructureGuiPreview();
+    private final StructureGuiPreview structureGuiPreview = new StructureGuiPreview(() -> AgeratumClient.CONFIG.reducedMotion);
 
     public StructureGuiPreview structureGuiPreview() { return this.structureGuiPreview; }
 
