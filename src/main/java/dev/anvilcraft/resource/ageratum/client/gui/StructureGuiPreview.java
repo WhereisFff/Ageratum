@@ -130,9 +130,9 @@ public final class StructureGuiPreview {
         int color = ((int) (255 * this.progress) << 24) | 0xFFFFFF;
         graphics.nextStratum();
         if (this.anchorVisible) {
-            Vector2f edge = StructureGuiGeometry.edge(x, y, width, height, this.anchorX, this.anchorY);
-            drawLine(graphics, this.anchorX, this.anchorY, edge.x, edge.y, color);
-            if (edge.distanceSquared(this.anchorX, this.anchorY) > 0.1f) {
+            Vector2f center = new Vector2f(x + width / 2, y + height / 2);
+            drawLine(graphics, this.anchorX, this.anchorY, center.x, center.y, color);
+            if (center.distanceSquared(this.anchorX, this.anchorY) > 0.1f) {
                 // 半径 2 的圆点，比 1 像素连线更醒目。
                 for (int row = -2; row <= 2; row++) {
                     int half = row == -2 || row == 2 ? 1 : 2;
