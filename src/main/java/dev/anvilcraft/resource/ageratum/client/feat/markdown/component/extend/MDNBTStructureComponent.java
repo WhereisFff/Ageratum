@@ -13,12 +13,12 @@ import dev.anvilcraft.resource.ageratum.client.feat.structure.StructureExportCli
 import dev.anvilcraft.resource.ageratum.client.feat.structure.StructureProjectionApi;
 import dev.anvilcraft.resource.ageratum.client.gui.GuideTheme;
 import dev.anvilcraft.resource.ageratum.client.util.RelativePathResolver;
-import dev.anvilcraft.resource.ageratum.client.util.ViewportCameraRig;
-import dev.anvilcraft.resource.ageratum.client.util.level.SandboxRenderLevel;
-import dev.anvilcraft.resource.ageratum.client.util.level.StructurePreviewRenderer;
+import dev.anvilcraft.lib.v2.rendering.preview.ViewportCameraRig;
+import dev.anvilcraft.lib.v2.rendering.preview.level.SandboxRenderLevel;
+import dev.anvilcraft.lib.v2.rendering.preview.level.StructurePreviewRenderer;
 import dev.anvilcraft.resource.ageratum.client.gui.GuideScreen;
-import dev.anvilcraft.resource.ageratum.client.util.level.StructurePreviewPicker;
-import dev.anvilcraft.resource.ageratum.client.util.level.StructureSandboxFactory;
+import dev.anvilcraft.lib.v2.rendering.preview.level.StructurePreviewPicker;
+import dev.anvilcraft.lib.v2.rendering.preview.level.StructureSandboxFactory;
 import lombok.extern.slf4j.Slf4j;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -442,9 +442,9 @@ public final class MDNBTStructureComponent extends MDComponent {
             return;
         }
         if (this.unavailableMenu) {
-            context.addTooltip(Component.translatable("tooltip.ageratum.structure_preview.no_gui"));
+            context.addTooltip(Component.translatable("tooltip.anvillib_rendering.structure_preview.no_gui"));
         } else if (this.selectedBlock == null) {
-            context.addTooltip(Component.translatable("tooltip.ageratum.structure_preview.inspect"));
+            context.addTooltip(Component.translatable("tooltip.anvillib_rendering.structure_preview.inspect"));
         } else {
             context.addTooltip(this.selectedBlockTooltip);
         }

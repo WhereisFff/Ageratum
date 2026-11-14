@@ -91,3 +91,10 @@ side = "CLIENT"
 # stop your mod loading on the server for example.
 #[features."${mod_id}"]
 #openGLVersion="[3.2,)"
+
+[[dependencies."${mod_id}"]]
+modId = "anvillib_rendering"
+type = "required"
+versionRange = "[${anvillib_version},)"
+ordering = "AFTER"
+side = "CLIENT"
