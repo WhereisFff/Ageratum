@@ -1,4 +1,4 @@
-package dev.anvilcraft.resource.ageratum.client.util.level;
+package dev.anvilcraft.lib.v2.rendering.preview.level;
 
 import com.google.gson.JsonParser;
 import net.minecraft.core.BlockPos;
@@ -36,6 +36,13 @@ class StructureBlockEntityDetailsTest {
         var json = JsonParser.parseString(Files.readString(Path.of("src/main/resources/assets/ageratum/lang/zh_cn.json")));
         Map<String, String> values = json.getAsJsonObject().entrySet().stream()
             .collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().getAsString()));
+        try (var stream = StructureBlockEntityDetails.class.getResourceAsStream("/assets/anvillib_rendering/lang/zh_cn.json")) {
+            if (stream == null) {
+                throw new IllegalStateException("缺少砧库预览翻译资源");
+            }
+            var shared = JsonParser.parseReader(new java.io.InputStreamReader(stream, java.nio.charset.StandardCharsets.UTF_8));
+            shared.getAsJsonObject().entrySet().forEach(entry -> values.put(entry.getKey(), entry.getValue().getAsString()));
+        }
         Language.inject(new Language() {
             @Override public String getOrDefault(String key, String fallback) { return values.getOrDefault(key, fallback); }
             @Override public boolean has(String key) { return values.containsKey(key); }

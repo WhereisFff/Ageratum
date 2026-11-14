@@ -2,8 +2,8 @@ package dev.anvilcraft.resource.ageratum.test;
 
 import dev.anvilcraft.resource.ageratum.client.feat.markdown.MarkdownParser;
 import dev.anvilcraft.resource.ageratum.client.gui.GuideScreen;
-import dev.anvilcraft.resource.ageratum.client.gui.StructureGuiSession;
-import dev.anvilcraft.resource.ageratum.client.util.level.StructureSandboxFactory;
+import dev.anvilcraft.lib.v2.rendering.preview.gui.StructureGuiSession;
+import dev.anvilcraft.lib.v2.rendering.preview.level.StructureSandboxFactory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
@@ -20,7 +20,7 @@ final class StructureGuiClientTest {
         StructureGuiSession.renderOnly(0.4f, () -> {
             var state = new net.minecraft.client.renderer.state.gui.GuiItemRenderState(new org.joml.Matrix3x2f(),
                 new net.minecraft.client.renderer.item.TrackingItemStackRenderState(), 0, 0, null);
-            check(((dev.anvilcraft.resource.ageratum.client.gui.StructureGuiItemOpacity) (Object) state).ageratum$opacity() == 0.4f,
+            check(((dev.anvilcraft.lib.v2.rendering.preview.gui.StructureGuiItemOpacity) (Object) state).anvillib$opacity() == 0.4f,
                 "deferred item state preserves popup opacity");
         });
         check(StructureGuiSession.opacity() == 1, "opacity scope restores ordinary menus");
