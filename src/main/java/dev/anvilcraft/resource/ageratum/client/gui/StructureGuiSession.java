@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -58,19 +59,39 @@ public record StructureGuiSession(AbstractContainerScreen<?> screen, SandboxRend
             }
         };
         player.setPos(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-        MenuProvider provider = level.getBlockState(pos).getMenuProvider(level, pos);
-        if (provider == null && level.getBlockEntity(pos) instanceof MenuProvider entityProvider) provider = entityProvider;
-        if (provider == null) return null;
-        AbstractContainerMenu menu = provider.createMenu(0, player.getInventory(), player);
-        if (menu == null) return null;
-        player.containerMenu = menu;
-        var factory = MenuScreens.getScreenFactory((MenuType<AbstractContainerMenu>) menu.getType());
-        if (factory.isEmpty()) return null;
-        // 原版配方书初始化会改写当前玩家菜单，预览必须恢复该引用。
         AbstractContainerMenu originalMenu = minecraft.player.containerMenu;
         try {
-            var screen = factory.get().create(menu, player.getInventory(), provider.getDisplayName());
-            if (!(screen instanceof AbstractContainerScreen<?> container)) return null;
+            AbstractContainerScreen<?> container;
+            var custom = StructureGuiProviders.get(BuiltInRegistries.BLOCK.getKey(level.getBlockState(pos).getBlock()));
+            if (custom != null) {
+                container = custom.create(new StructureGuiProviders.Context(level, player, pos.immutable(), template));
+                if (container == null) {
+                    return null;
+                }
+                player.containerMenu = container.getMenu();
+            } else {
+                MenuProvider provider = level.getBlockState(pos).getMenuProvider(level, pos);
+                if (provider == null && level.getBlockEntity(pos) instanceof MenuProvider entityProvider) {
+                    provider = entityProvider;
+                }
+                if (provider == null) {
+                    return null;
+                }
+                AbstractContainerMenu menu = provider.createMenu(0, player.getInventory(), player);
+                if (menu == null) {
+                    return null;
+                }
+                player.containerMenu = menu;
+                var factory = MenuScreens.getScreenFactory((MenuType<AbstractContainerMenu>) menu.getType());
+                if (factory.isEmpty()) {
+                    return null;
+                }
+                var screen = factory.get().create(menu, player.getInventory(), provider.getDisplayName());
+                if (!(screen instanceof AbstractContainerScreen<?> nativeScreen)) {
+                    return null;
+                }
+                container = nativeScreen;
+            }
             renderOnly(() -> container.init(container.getImageWidth(), container.getImageHeight()));
             // 部分菜单在 init 中确定最终大小。
             if (container.getGuiLeft() != 0 || container.getGuiTop() != 0) {

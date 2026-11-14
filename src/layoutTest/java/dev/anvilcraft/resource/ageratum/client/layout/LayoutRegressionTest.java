@@ -41,6 +41,7 @@ public final class LayoutRegressionTest {
     }
 
     public static void main(String[] args) throws Exception {
+        dev.anvilcraft.resource.ageratum.client.gui.StructureGuiProvidersTest.verify();
         noticeColors();
         zoomPersistence();
         List<String> warnings = new ArrayList<>();
